@@ -14,6 +14,8 @@ use App\Http\Controllers\Client\RestaurantController;
 use App\Http\Controllers\Client\ProductController;
 use App\Http\Controllers\Client\CouponController;
 
+use App\Http\Controllers\Frontend\HomeController;
+
 
 
 //////////////////////////// Start User All Route //////////////////////////
@@ -189,4 +191,12 @@ Route::post('/client/login_submit', [ClientController::class, 'ClientLoginSubmit
 Route::get('/client/logout', [ClientController::class, 'Clientlogout'])->name('client.logout');
 
 //////////////////////////// End Client All Route //////////////////////////
+
+
+//////////////////////////////////////////// Frontend Route Accessable for All /////////////////////////////////////
+
+Route::controller(HomeController::class)->group(function(){
+    Route::get('/restaurant/details/{id}', 'RestaurantDetails')->name('res.details');
+
+}); // End Product Route
 
