@@ -157,7 +157,8 @@
                          <h5 class="mb-4 mt-3 col-md-12">{{ $menu->menu_name }} <small class="h6 text-black-50">{{ $menu->products->count() }} ITEMS</small></h5>
                          <div class="col-md-12">
                             <div class="bg-white rounded border shadow-sm mb-4">
-                                @foreach ($menu->products as $product)
+
+                              @foreach ($menu->products as $product)
                                <div class="menu-list p-3 border-bottom">
                                  <a class="btn btn-outline-secondary btn-sm  float-right" href="#">ADD</a>
                                   <div class="media">
@@ -173,6 +174,7 @@
                                   </div>
                                </div>
                                @endforeach
+
                             </div>
                          </div>
                       </div>
@@ -184,13 +186,15 @@
                       <div id="gallery" class="bg-white rounded shadow-sm p-4 mb-4">
                          <div class="restaurant-slider-main position-relative homepage-great-deals-carousel">
                             <div class="owl-carousel owl-theme homepage-ad">
-                               <div class="item">
-                                  <img class="img-fluid" src="img/gallery/1.png">
-                               </div>
-                            </div>
 
-                            <div class="position-absolute restaurant-slider-pics bg-dark text-white">2 of 14 Photos</div>
-                            <div class="position-absolute restaurant-slider-view-all"><button type="button" class="btn btn-light bg-white">See all Photos</button></div>
+                                @foreach ($gallerys as $index => $gallery)
+                                <div class="item">
+                                    <img class="img-fluid" src="{{ asset($gallery->image) }}">
+                                    <div class="position-absolute restaurant-slider-pics bg-dark text-white">{{ $index + 1 }} of {{ $gallerys->count() }} Photos</div>
+                                </div>
+                                @endforeach
+
+                             </div>
                          </div>
                       </div>
                    </div>
@@ -202,31 +206,33 @@
                                <div class="gmap_canvas"><iframe width="300" height="170" id="gmap_canvas" src="https://maps.google.com/maps?q=university%20of%20san%20francisco&t=&z=9&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div>
                             </div>
                          </div>
+
                          <h5 class="mb-4">Restaurant Info</h5>
-                         <p class="mb-3">Jagjit Nagar, Near Railway Crossing,
-                            <br> Near Model Town, Ludhiana, PUNJAB
-                         </p>
-                         <p class="mb-2 text-black"><i class="icofont-phone-circle text-primary mr-2"></i> +91 01234-56789, +91 01234-56789</p>
-                         <p class="mb-2 text-black"><i class="icofont-email text-primary mr-2"></i> iamosahan@gmail.com, osahaneat@gmail.com</p>
-                         <p class="mb-2 text-black"><i class="icofont-clock-time text-primary mr-2"></i> Today  11am – 5pm, 6pm – 11pm
-                            <span class="badge badge-success"> OPEN NOW </span>
+                         <p class="mb-3"> {{ $client->address }}</p>
+                         <p class="mb-2 text-black"><i class="icofont-phone-circle text-primary mr-2"></i> {{ $client->phone }}</p>
+                         <p class="mb-2 text-black"><i class="icofont-email text-primary mr-2"></i> {{ $client->email }}</p>
+                         <p class="mb-2 text-black"><i class="icofont-clock-time text-primary mr-2"></i> {{ $client->info }}
+                            {{-- <span class="badge badge-success"> OPEN NOW </span> --}}
                          </p>
                          <hr class="clearfix">
-                         <p class="text-black mb-0">You can also check the 3D view by using our menue map clicking here &nbsp;&nbsp;&nbsp; <a class="text-info font-weight-bold" href="#">Venue Map</a></p>
+                         <p class="text-black mb-0">Location: <a class="text-info font-weight-bold">{{ $client->city->city_name }}</a></p>
                          <hr class="clearfix">
-                         <h5 class="mt-4 mb-4">More Info</h5>
-                         <p class="mb-3">Dal Makhani, Panneer Butter Masala, Kadhai Paneer, Raita, Veg Thali, Laccha Paratha, Butter Naan</p>
+                         <h5 class="mt-4 mb-2">More Info</h5>
+                         <p class="mb-3">{{ $menuNamesString }}</p>
                          <div class="border-btn-main mb-4">
-                            <a class="border-btn text-success mr-2" href="#"><i class="icofont-check-circled"></i> Breakfast</a>
-                            <a class="border-btn text-danger mr-2" href="#"><i class="icofont-close-circled"></i> No Alcohol Available</a>
-                            <a class="border-btn text-success mr-2" href="#"><i class="icofont-check-circled"></i> Vegetarian Only</a>
-                            <a class="border-btn text-success mr-2" href="#"><i class="icofont-check-circled"></i> Indoor Seating</a>
-                            <a class="border-btn text-success mr-2" href="#"><i class="icofont-check-circled"></i> Breakfast</a>
-                            <a class="border-btn text-danger mr-2" href="#"><i class="icofont-close-circled"></i> No Alcohol Available</a>
-                            <a class="border-btn text-success mr-2" href="#"><i class="icofont-check-circled"></i> Vegetarian Only</a>
+                            <a class="border-btn text-success mr-2"><i class="icofont-check-circled"></i> Breakfast</a>
+                            <a class="border-btn text-danger mr-2"><i class="icofont-close-circled"></i> No Alcohol Available</a>
+                            <a class="border-btn text-success mr-2"><i class="icofont-check-circled"></i> Separate Smoking Zone</a>
+                            <a class="border-btn text-success mr-2"><i class="icofont-check-circled"></i> Indoor Seating</a>
+                            <a class="border-btn text-success mr-2"><i class="icofont-check-circled"></i> Launch</a>
+                            <a class="border-btn text-danger mr-2"><i class="icofont-close-circled"></i> No Political Conversation</a>
+                            <a class="border-btn text-success mr-2"><i class="icofont-check-circled"></i> Dinner</a>
+                            <a class="border-btn text-success mr-2"><i class="icofont-check-circled"></i> Children Play Zone</a>
+                            <a class="border-btn text-success mr-2"><i class="icofont-check-circled"></i> More Facilities</a>
                          </div>
                       </div>
                    </div>
+
                    <div class="tab-pane fade" id="pills-book" role="tabpanel" aria-labelledby="pills-book-tab">
                       <div id="book-a-table" class="bg-white rounded shadow-sm p-4 mb-5 rating-review-select-page">
                          <h5 class="mb-4">Book A Table</h5>
