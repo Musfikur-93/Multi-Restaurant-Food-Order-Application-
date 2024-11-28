@@ -197,6 +197,7 @@ Route::get('/client/logout', [ClientController::class, 'Clientlogout'])->name('c
 
 Route::controller(HomeController::class)->group(function(){
     Route::get('/restaurant/details/{id}', 'RestaurantDetails')->name('res.details');
+    Route::post('/add-wish-list/{id}', 'AddWishList');
 
 }); // End Product Route
 
