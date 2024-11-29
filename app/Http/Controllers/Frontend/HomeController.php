@@ -46,6 +46,14 @@ class HomeController extends Controller
     } // End Method
 
 
+    public function AllWishlist(){
+
+        $wishlist = Wishlist::where('user_id',Auth::id())->get();
+        return view('frontend.dashboard.all_wishlist',compact('wishlist'));
+
+    } // End Method
+
+
 
 
 } // End Main Method
