@@ -19,6 +19,7 @@
       <link href="{{ asset('frontend/vendor/select2/css/select2.min.css') }}" rel="stylesheet">
       <link rel="stylesheet" href="{{ asset('frontend/vendor/owl-carousel/owl.carousel.css') }}">
       <link rel="stylesheet" href="{{ asset('frontend/vendor/owl-carousel/owl.theme.css') }}">
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
       <!-- Custom styles for this template-->
       <link href="{{ asset('frontend/css/osahan.css') }}" rel="stylesheet">
    </head>
@@ -40,10 +41,9 @@
  <script src="{{ asset('frontend/vendor/owl-carousel/owl.carousel.js') }}"></script>
  <!-- Custom scripts for all pages-->
  <script src="{{ asset('frontend/js/custom.js') }}"></script>
-
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
  <!-- toastr JS -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
 <script>
     @if(Session::has('message'))
     var type = "{{ Session::get('alert-type','info') }}"
