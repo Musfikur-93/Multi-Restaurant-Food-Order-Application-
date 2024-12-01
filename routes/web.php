@@ -15,6 +15,7 @@ use App\Http\Controllers\Client\ProductController;
 use App\Http\Controllers\Client\CouponController;
 
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\CartController;
 
 
 
@@ -27,7 +28,7 @@ use App\Http\Controllers\Frontend\HomeController;
 Route::get('/', [UserController::class, 'Index'])->name('index');
 
 Route::get('/dashboard', function () {
-    return view('frontend.dashboard.dashboard');
+    return view('frontend.dashboard.profile');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -38,6 +39,7 @@ Route::middleware('auth')->group(function () {
 
     // Get Wishlist Data for User
     Route::get('/all/wishlist', [HomeController::class, 'AllWishlist'])->name('all.wishlist');
+    Route::get('/wishlist/remove/{id}', [HomeController::class, 'WishlistRemove'])->name('wishlist.remove');
 
 });
 
@@ -203,4 +205,10 @@ Route::controller(HomeController::class)->group(function(){
     Route::post('/add-wish-list/{id}', 'AddWishList');
 
 }); // End Product Route
+
+
+Route::controller(CartController::class)->group(function(){
+    Route::get('/add_to_cart/{id}', 'AddToCart')->name('add_to_cart');
+
+});
 

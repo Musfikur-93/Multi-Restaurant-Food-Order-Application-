@@ -9,6 +9,7 @@ use App\Models\Client;
 use App\Models\Menu;
 use App\Models\Gallery;
 use App\Models\Wishlist;
+use App\Models\City;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -34,6 +35,7 @@ class HomeController extends Controller
                 Wishlist::insert([
                     'user_id' => Auth::id(),
                     'client_id' => $id,
+                    'created_at' => Carbon::now(),
                 ]);
                 return response()->json(['success' => 'Your Wishlist Addedd Successfully']);
             }else{
@@ -50,6 +52,20 @@ class HomeController extends Controller
 
         $wishlist = Wishlist::where('user_id',Auth::id())->get();
         return view('frontend.dashboard.all_wishlist',compact('wishlist'));
+
+    } // End Method
+
+
+    public function WishlistRemove($id){
+
+        Wishlist::find($id)->delete();
+
+        $notification = array(
+            'message' => 'Wishlist Deleted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
 
     } // End Method
 

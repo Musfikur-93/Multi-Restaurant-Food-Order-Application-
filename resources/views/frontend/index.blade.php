@@ -1,7 +1,6 @@
 @extends('frontend.master')
 @section('content')
 
-
 <section class="section pt-5 pb-5 products-section">
     <div class="container">
        <div class="section-header text-center">

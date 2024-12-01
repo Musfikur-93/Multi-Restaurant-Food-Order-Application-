@@ -1,4 +1,5 @@
-@include('frontend.dashboard.header')
+@extends('frontend.dashboard.dashboard')
+@section('dashboard')
 
 
 @php
@@ -100,7 +101,7 @@
                                      @else
                                          $<del>{{ $popular->price }}</del> ${{ $popular->discount_price }}
                                      @endif
-                                    <a class="btn btn-outline-secondary btn-sm float-right mr-1" href="#">ADD</a>
+                                    <a class="btn btn-outline-secondary btn-sm float-right mr-1" href="{{ route('add_to_cart',$popular->id) }}">ADD</a>
                                   </a>
                                </div>
                             </div>
@@ -142,7 +143,7 @@
                                         @endif
 
                                         <span class="float-right">
-                                        <a class="btn btn-outline-secondary btn-sm" href="#">ADD</a>
+                                        <a class="btn btn-outline-secondary btn-sm" href="{{ route('add_to_cart',$bestseller->id) }}">ADD</a>
                                         </span>
                                      </p>
                                   </div>
@@ -160,7 +161,7 @@
 
                               @foreach ($menu->products as $product)
                                <div class="menu-list p-3 border-bottom">
-                                 <a class="btn btn-outline-secondary btn-sm  float-right" href="#">ADD</a>
+                                 <a class="btn btn-outline-secondary btn-sm  float-right" href="{{ route('add_to_cart',$product->id) }}">ADD</a>
                                   <div class="media">
                                      <img class="mr-3 rounded-pill" src="{{ asset($product->image) }}" alt="Generic placeholder image">
                                      <div class="media-body">
@@ -535,8 +536,4 @@
 
 
 
-
-
-
-
-@include('frontend.dashboard.footer')
+@endsection
