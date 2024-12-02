@@ -1,6 +1,7 @@
 @extends('frontend.dashboard.dashboard')
 @section('dashboard')
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 @php
 
@@ -166,7 +167,7 @@
                                      <img class="mr-3 rounded-pill" src="{{ asset($product->image) }}" alt="Generic placeholder image">
                                      <div class="media-body">
                                         <h6 class="mb-1">{{ $product->name }}</h6>
-                                            <p class="text-gray mb-0">${{ $product->price }} ({{ $product->size ?? '' }} cm)</p>
+                                            <p class="text-gray mb-0">${{ $product->discount_price == NULL ? $product->price : $product->discount_price }} ({{ $product->size ?? '' }} cm)</p>
                                      </div>
                                   </div>
                                </div>
@@ -434,9 +435,14 @@
                     <div class="gold-members p-2 border-bottom">
                           <p class="text-gray mb-0 float-right ml-2">${{ $details['price'] * $details['quantity'] }}</p>
                           <span class="count-number float-right">
-                          <button class="btn btn-outline-secondary  btn-sm left dec"> <i class="icofont-minus"></i> </button>
-                          <input class="count-number-input" type="text" value="1" readonly="">
-                          <button class="btn btn-outline-secondary btn-sm right inc"> <i class="icofont-plus"></i> </button>
+
+                          <button class="btn btn-outline-secondary  btn-sm left dec" data-id="{{ $id }}"> <i class="icofont-minus"></i> </button>
+                          <input class="count-number-input" type="text" value="{{ $details['quantity'] }}" readonly="">
+
+                          <button class="btn btn-outline-secondary btn-sm right inc" data-id="{{ $id }}"> <i class="icofont-plus"></i> </button>
+
+                          <button class="btn btn-outline-secondary btn-sm right remove" data-id="{{ $id }}"> <i class="icofont-trash"></i> </button>
+
                           </span>
                           <div class="media">
                              <div class="mr-2"><img src="{{ asset($details['image']) }}"  width="25px" ></div>
@@ -470,6 +476,67 @@
        </div>
     </div>
  </section>
+
+
+ <script type="text/javascript">
+    $(document).ready(function(){
+        $('.inc').on('click',function(){
+            var id = $(this).data('id');
+            var input = $(this).closest('span').find('input');
+            var newQuantity = parseInt(input.val()) + 1;
+            updateQuantity(id,newQuantity);
+        });
+
+        $('.dec').on('click',function(){
+            var id = $(this).data('id');
+            var input = $(this).closest('span').find('input');
+            var newQuantity = parseInt(input.val()) - 1;
+            if (newQuantity >= 1) {
+                updateQuantity(id,newQuantity);
+            }
+        });
+
+        $('.remove').on('click',function(){
+            var id = $(this).data('id');
+            removeFromCart(id);
+        });
+
+        function updateQuantity(id,quantity){
+            $.ajax({
+                url: '{{ route("cart.updateQuentity") }}',
+                method: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: id,
+                    quantity: quantity
+                },
+                success: function(data){
+                    location.reload();
+                }
+            });
+
+        }
+
+        function removeFromCart(id){
+            $.ajax({
+                url: '{{ route("cart.remove") }}',
+                method: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: id
+                },
+                success: function(response){
+                    location.reload();
+                }
+            });
+        }
+
+
+
+
+    })
+
+</script>
 
 
 

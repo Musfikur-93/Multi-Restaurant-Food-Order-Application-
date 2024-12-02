@@ -209,6 +209,8 @@ Route::controller(HomeController::class)->group(function(){
 
 Route::controller(CartController::class)->group(function(){
     Route::get('/add_to_cart/{id}', 'AddToCart')->name('add_to_cart');
+    Route::post('/cart/update-Quentity', 'CartUpdateQuentity')->name('cart.updateQuentity');
+    Route::post('/cart/remove', 'CartRemove')->name('cart.remove');
 
 });
 
