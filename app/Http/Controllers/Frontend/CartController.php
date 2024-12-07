@@ -55,11 +55,27 @@ class CartController extends Controller
             session()->put('cart',$cart);
         }
 
-        $notification = array(
-            'message' => 'Cart Updated Successfully',
+        return response()->json([
+            'message' => 'Quantity Updated',
             'alert-type' => 'success'
-        );
-        return redirect()->back()->with($notification);
+        ]);
+
+    } // End Method
+
+
+    public function CartRemove(Request $request){
+
+        $cart = session()->get('cart',[]);
+
+        if (isset($cart[$request->id])) {
+            unset($cart[$request->id]);
+            session()->put('cart',$cart);
+        }
+
+        return response()->json([
+            'message' => 'Product Remove Successfully',
+            'alert-type' => 'success'
+        ]);
 
     } // End Method
 

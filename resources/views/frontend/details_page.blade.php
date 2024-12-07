@@ -441,7 +441,7 @@
 
                           <button class="btn btn-outline-secondary btn-sm right inc" data-id="{{ $id }}"> <i class="icofont-plus"></i> </button>
 
-                          <button class="btn btn-outline-secondary btn-sm right remove" data-id="{{ $id }}"> <i class="icofont-trash"></i> </button>
+                          <button class="btn btn-outline-danger btn-sm right remove" data-id="{{ $id }}"> <i class="icofont-trash"></i> </button>
 
                           </span>
                           <div class="media">
@@ -480,6 +480,19 @@
 
  <script type="text/javascript">
     $(document).ready(function(){
+
+        const Toast = Swal.mixin({
+         toast: true,
+         position: 'top-end',
+         showConfirmButton: false,
+         timer: 1500,
+         timerProgressBar: true,
+         didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer);
+            toast.addEventListener('mouseleave', Swal.resumeTimer);
+         }
+        });
+
         $('.inc').on('click',function(){
             var id = $(this).data('id');
             var input = $(this).closest('span').find('input');
@@ -511,7 +524,12 @@
                     quantity: quantity
                 },
                 success: function(data){
-                    location.reload();
+                    Toast.fire({
+                    icon: 'success',
+                    title: 'Quantity Updated'
+                    }).then(() => {
+                        location.reload();
+                    });
                 }
             });
 
@@ -526,7 +544,12 @@
                     id: id
                 },
                 success: function(response){
-                    location.reload();
+                    Toast.fire({
+                    icon: 'success',
+                    title: 'Product Remove Successfully'
+                    }).then(() => {
+                        location.reload();
+                    });
                 }
             });
         }
