@@ -447,7 +447,7 @@
                           $total += $details['price'] * $details['quantity']
                        @endphp
 
-                    <div class="gold-members p-2 border-bottom">
+                     <div class="gold-members p-2 border-bottom">
                           <p class="text-gray mb-0 float-right ml-2">${{ $details['price'] * $details['quantity'] }}</p>
                           <span class="count-number float-right">
 
@@ -471,18 +471,50 @@
 
                  </div>
 
-                 <div class="mb-2 bg-white rounded p-2 clearfix">
-                    <div class="input-group input-group-sm mb-2">
-                       <input type="text" class="form-control" placeholder="Enter promo code" id="coupon_name">
-                       <div class="input-group-append">
-                          <button class="btn btn-primary" type="submit" id="button-addon2" onclick="ApplyCoupon()"><i class="icofont-sale-discount"></i> APPLY</button>
-                       </div>
+                 @if (Session::has('coupon'))
+                    <div class="mb-2 bg-white rounded p-2 clearfix">
+                        <p class="mb-1">Item Total <span class="float-right text-dark">{{ count((array) session('cart')) }}</span></p>
+
+                        <p class="mb-1">Coupon Name <span class="float-right text-dark">{{ session()->get('coupon')['coupon_name'] }} ({{ session()->get('coupon')['discount'] }}%)</span></p>
+
+                        <p class="mb-1 text-success">Total Discount
+                        @if (Session::has('coupon'))
+                            <span class="float-right text-danger"> ${{ $total - session()->get('coupon')['discount'] }}</span>
+                        @else
+                            <span class="float-right text-danger"> ${{  $total }}</span>
+                        @endif
+
+                        <hr />
+                        <h6 class="font-weight-bold mb-0">TO PAY <span class="float-right">
+                            @if (Session::has('coupon'))
+                            <span class="float-right text-danger"> ${{ $total - session()->get('coupon')['discount'] }}</span>
+                            @else
+                            <span class="float-right text-danger"> ${{  $total }}</span>
+                            @endif
+                        </span></h6>
                     </div>
-                 </div>
+                 @else
+                    <div class="mb-2 bg-white rounded p-2 clearfix">
+                        <div class="input-group input-group-sm mb-2">
+                        <input type="text" class="form-control" placeholder="Enter promo code" id="coupon_name">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit" id="button-addon2" onclick="ApplyCoupon()"><i class="icofont-sale-discount"></i> APPLY</button>
+                        </div>
+                        </div>
+                    </div>
+                 @endif
+
+
 
                 <div class="mb-2 bg-white rounded p-2 clearfix">
                    <img class="img-fluid float-left" src="{{ asset('frontend/img/wallet-icon.png') }}">
-                   <h6 class="font-weight-bold text-right mb-2">Subtotal : <span class="text-danger">${{ $total }}</span></h6>
+                   <h6 class="font-weight-bold text-right mb-2">Subtotal : <span class="text-danger">
+                        @if (Session::has('coupon'))
+                            <span class="float-right text-danger"> ${{ $total - session()->get('coupon')['discount'] }}</span>
+                        @else
+                            <span class="float-right text-danger"> ${{  $total }}</span>
+                        @endif
+                    </span></h6>
                    <p class="seven-color mb-1 text-right">Extra charges may apply</p>
                 </div>
                 <a href="checkout.html" class="btn btn-success btn-block btn-lg">Checkout <i class="icofont-long-arrow-right"></i></a>
