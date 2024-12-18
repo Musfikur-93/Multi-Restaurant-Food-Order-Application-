@@ -18,6 +18,9 @@
                      </a>
                   </li>
 
+
+                  @auth
+
                   @php
                       $id = Auth::user()->id;
                       $profileData = App\Models\User::find($id);
@@ -32,6 +35,17 @@
                         <a class="dropdown-item" href="{{ route('user.logout') }}"><i class="icofont-key"></i> Logout</a>
                      </div>
                   </li>
+                  @else
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> My Account
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow-sm border-0">
+                       <a class="dropdown-item" href="{{ route('login') }}"><i class="icofont-food-cart"></i> Login</a>
+                       <a class="dropdown-item" href="{{ route('register') }}"><i class="icofont-key"></i> Register</a>
+                    </div>
+                 </li>
+                 @endauth
+
 
                   <li class="nav-item dropdown dropdown-cart">
                      <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

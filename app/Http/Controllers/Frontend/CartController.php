@@ -15,6 +15,10 @@ class CartController extends Controller
 
     public function AddToCart($id){
 
+        if (Session::has('coupon')) {
+            Session::forget('coupon');
+        }
+
         $products = Product::find($id);
 
         $cart = session()->get('cart',[]);
@@ -123,6 +127,14 @@ class CartController extends Controller
         }else{
             return response()->json(['error' => 'Invalid Coupon']);
         }
+
+    } // End Method
+
+
+    public function CouponRemove(){
+
+        Session::forget('coupon');
+        return response()->json(['success' => 'Coupon Remove Successfully!']);
 
     } // End Method
 

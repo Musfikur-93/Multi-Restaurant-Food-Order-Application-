@@ -212,6 +212,7 @@ Route::controller(CartController::class)->group(function(){
     Route::post('/cart/update-Quentity', 'CartUpdateQuentity')->name('cart.updateQuentity');
     Route::post('/cart/remove', 'CartRemove')->name('cart.remove');
     Route::post('/apply-coupon', 'ApplyCoupon');
+    Route::get('/coupon-remove', 'CouponRemove');
 
 });
 
