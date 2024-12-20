@@ -35,7 +35,9 @@
                         <a class="dropdown-item" href="{{ route('user.logout') }}"><i class="icofont-key"></i> Logout</a>
                      </div>
                   </li>
+
                   @else
+
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> My Account
                     </a>

@@ -139,6 +139,38 @@ class CartController extends Controller
     } // End Method
 
 
+    //////////////////////// Frontend Checkout Page ////////////////////////
+
+    public function ShopCheckout(){
+        if (Auth::check()) {
+            $cart = session()->get('cart',[]);
+            $totalAmount = 0;
+
+            foreach ($cart as $car) {
+                $totalAmount += $car['price'];
+            }
+
+            if ($totalAmount > 0) {
+                return view('frontend.checkout.view_checkout',compact('cart'));
+            }else{
+                $notification = array(
+                    'message' => 'Your Cart is Empty',
+                    'alert-type' => 'error'
+                );
+                return redirect()->to('/')->with($notification);
+            }
+        }else{
+            $notification = array(
+                'message' => 'Please Login First',
+                'alert-type' => 'error'
+            );
+            return redirect()->route('login')->with($notification);
+        }
+
+
+    }
+
+
 
 
 } // End Main Method
