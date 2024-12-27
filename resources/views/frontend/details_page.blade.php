@@ -442,7 +442,7 @@
                     @php $total = 0 @endphp
 
                     @if (session('cart'))
-                       @foreach (session('cart') as $id => $details)
+                    @foreach (session('cart') as $id => $details)
                        @php
                           $total += $details['price'] * $details['quantity']
                        @endphp
@@ -507,7 +507,6 @@
                         </div>
                     </div>
                  @endif
-
 
 
                 <div class="mb-2 bg-white rounded p-2 clearfix">

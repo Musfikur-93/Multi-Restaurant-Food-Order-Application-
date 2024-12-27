@@ -16,6 +16,7 @@ use App\Http\Controllers\Client\CouponController;
 
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\OrderController;
 
 
 
@@ -214,6 +215,11 @@ Route::controller(CartController::class)->group(function(){
     Route::post('/apply-coupon', 'ApplyCoupon');
     Route::get('/coupon-remove', 'CouponRemove');
     Route::get('/checkout', 'ShopCheckout')->name('checkout');
+
+});
+
+Route::controller(OrderController::class)->group(function(){
+    Route::get('/cash_order', 'CashOrder')->name('cash_order');
 
 });
 
