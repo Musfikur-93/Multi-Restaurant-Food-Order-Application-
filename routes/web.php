@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\ManageController;
+use App\Http\Controllers\Admin\ManageOrderController;
 
 use App\Http\Controllers\Client\RestaurantController;
 use App\Http\Controllers\Client\ProductController;
@@ -110,6 +111,15 @@ Route::controller(ManageController::class)->group(function(){
     Route::get('/delete/banner/{id}', 'DeleteBanner')->name('delete.banner');
 
 }); // End Banner Route
+
+
+Route::controller(ManageOrderController::class)->group(function(){
+    Route::get('/pending/order', 'PendingOrder')->name('pending.order');
+    Route::get('/confirm/order', 'ConfirmOrder')->name('confirm.order');
+    Route::get('/processing/order', 'ProcessingOrder')->name('processing.order');
+    Route::get('/deliverd/order', 'DeliverdOrder')->name('deliverd.order');
+
+}); // End Order Route
 
 
 
@@ -219,7 +229,7 @@ Route::controller(CartController::class)->group(function(){
 });
 
 Route::controller(OrderController::class)->group(function(){
-    Route::get('/cash_order', 'CashOrder')->name('cash_order');
+    Route::post('/cash_order', 'CashOrder')->name('cash_order');
 
 });
 

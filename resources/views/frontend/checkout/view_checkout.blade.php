@@ -52,6 +52,7 @@
     </div>
 
     <div class="pt-2"></div>
+
     <div class="bg-white rounded shadow-sm p-4 osahan-payment">
         <h4 class="mb-1">Choose payment method</h4>
         <h6 class="mb-3 text-black-50">Credit/Debit Cards</h6>
@@ -60,9 +61,8 @@
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 
                 <a class="nav-link active" id="v-pills-cash-tab" data-toggle="pill" href="#v-pills-cash" role="tab" aria-controls="v-pills-cash" aria-selected="false"><i class="icofont-money"></i> Pay on Delivery</a>
+
                 <a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true"><i class="icofont-credit-card"></i> Credit/Debit Cards</a>
-
-
 
                 </div>
             </div>
@@ -80,7 +80,7 @@
                             <input type="hidden" name="name" value="{{ Auth::user()->name }}">
                             <input type="hidden" name="email" value="{{ Auth::user()->email }}">
                             <input type="hidden" name="phone" value="{{ Auth::user()->phone }}">
-                            <input type="hidden" nama="address" value="{{ Auth::user()->address }}">
+                            <input type="hidden" name="address" value="{{ Auth::user()->address }}">
 
                             <button type="submit" class="btn btn-success btn-block btn-lg">PAY
                             <i class="icofont-long-arrow-right"></i></button>
@@ -205,7 +205,7 @@
                         @if (Session::has('coupon'))
                             <span class="float-right text-danger"> ${{ $total - session()->get('coupon')['discount'] }}</span>
                         @else
-                            <span class="float-right text-danger"> ${{  $total }}</span>
+                            <span class="float-right text-danger"> ${{ $total }}</span>
                         @endif
 
                         <hr />
@@ -213,7 +213,7 @@
                             @if (Session::has('coupon'))
                             <span class="float-right text-danger"> ${{ $total - session()->get('coupon')['discount'] }}</span>
                             @else
-                            <span class="float-right text-danger"> ${{  $total }}</span>
+                            <span class="float-right text-danger"> ${{ $total }}</span>
                             @endif
                         </span></h6>
                     </div>
@@ -234,21 +234,21 @@
                          @if (Session::has('coupon'))
                              <span class="float-right text-danger"> ${{ $total - session()->get('coupon')['discount'] }}</span>
                          @else
-                             <span class="float-right text-danger"> ${{  $total }}</span>
+                             <span class="float-right text-danger"> ${{ $total }}</span>
                          @endif
                      </span></h6>
                     <p class="seven-color mb-1 text-right">Extra charges may apply</p>
                  </div>
 
-                <a href="thanks.html" class="btn btn-success btn-block btn-lg">PAY
+                <a href="#" class="btn btn-success btn-block btn-lg">PAY
                     @if (Session::has('coupon'))
                         <span class="text-white"> ${{ $total - session()->get('coupon')['discount'] }}</span>
                     @else
                         <span class="text-white"> ${{ $total }}</span>
                     @endif
+                </a>
              </div>
 
-             <div class="pt-2"></div>
              <div class="pt-2"></div>
           </div>
        </div>

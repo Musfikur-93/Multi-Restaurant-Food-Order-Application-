@@ -105,6 +105,38 @@
                     </ul>
                 </li>
 
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow">
+                        <i data-feather="grid"></i>
+                        <span data-key="t-apps">Manage Orders</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li>
+                            <a href="{{ route('pending.order') }}">
+                                <span data-key="t-calendar">Pending Order</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('confirm.order') }}">
+                                <span data-key="t-calendar">Confirm Order</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('processing.order') }}">
+                                <span data-key="t-calendar">Processing Order</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('deliverd.order') }}">
+                                <span data-key="t-calendar">Deliverd Order</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
             </ul>
 
              <div class="card sidebar-alert border-0 text-center mx-4 mb-0 mt-5">
