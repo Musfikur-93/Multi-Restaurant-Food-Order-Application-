@@ -40,12 +40,12 @@ class ManageOrderController extends Controller
         $order = Order::with('user')->where('id',$id)->first();
         $orderItems = OrderItem::with('product')->where('order_id',$id)->orderBy('id','desc')->get();
 
-        $totalAmount = 0;
+        $totalPrice = 0;
         foreach($orderItems as $item){
-            $totalAmount += $item->price * $item->quantity;
+            $totalPrice += $item->price * $item->qty;
         }
 
-        return view('admin.backend.order.admin_order_details',compact('order','orderItems','totalAmount'));
+        return view('admin.backend.order.admin_order_details',compact('order','orderItems','totalPrice'));
 
     } // End Method
 
