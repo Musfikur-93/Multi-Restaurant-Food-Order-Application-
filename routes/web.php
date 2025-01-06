@@ -124,6 +124,15 @@ Route::controller(ManageOrderController::class)->group(function(){
 }); // End Order Route
 
 
+Route::controller(ManageOrderController::class)->group(function(){
+    Route::get('/pending_to_confirm/{id}', 'PendingToConfirm')->name('pending_to_confirm');
+    Route::get('/confirm_to_processing/{id}', 'ConfirmToProcessing')->name('confirm_to_processing');
+    Route::get('/processing_to_deliverd/{id}', 'ProcessingToDeliverd')->name('processing_to_deliverd');
+
+
+}); // End Order Route
+
+
 
 }); // End Admin Group Middleware
 

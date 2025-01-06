@@ -35,19 +35,19 @@
             </tr>
             </thead>
             <tbody>
-           @foreach ($allData as $key=> $item)
-            <tr>
-                <td>{{ $key+1 }}</td>
-                <td>{{ $item->order_date }}</td>
-                <td>{{ $item->invoice_no }}</td>
-                <td>{{ $item->amount }}</td>
-                <td>{{ $item->payment_method }}</td>
-                <td><span class="badge bg-primary">{{ $item->status }}</span></td>
+            @foreach ($allData as $key=> $item)
+                <tr>
+                    <td>{{ $key+1 }}</td>
+                    <td>{{ $item->order_date }}</td>
+                    <td>{{ $item->invoice_no }}</td>
+                    <td>{{ $item->amount }}</td>
+                    <td>{{ $item->payment_method }}</td>
+                    <td><span class="badge bg-primary">{{ $item->status }}</span></td>
 
-                <td><a href="{{ route('admin.edit.product',$item->id) }}" class="btn btn-info waves-effect waves-light"> <i class="fas fa-eye"></i> </a>
-                </td>
-            </tr>
-            @endforeach
+                    <td><a href="{{ route('admin.order.details',$item->id) }}" class="btn btn-info waves-effect waves-light"> <i class="fas fa-eye"></i> </a>
+                    </td>
+                </tr>
+                @endforeach
 
             </tbody>
         </table>

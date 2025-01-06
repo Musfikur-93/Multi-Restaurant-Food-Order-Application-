@@ -101,12 +101,12 @@
                                     <tr>
                                         <th width="50%"></th>
                                         <td>
-                                            @if ($order->status == 'Pending')
-                                                <a href="" class="btn btn-block btn-success">Confirm Order</a>
-                                            @elseif ($order->status == 'Confirm')
-                                                <a href="" class="btn btn-block btn-success">Processing Order</a>
-                                            @elseif ($order->status == 'Processing')
-                                                <a href="" class="btn btn-block btn-success">Delivered Order</a>
+                                            @if ($order->status == 'pending')
+                                                <a href="{{ route('pending_to_confirm',$order->id) }}" class="btn btn-block btn-success" id="cofirmOrder">Confirm Order</a>
+                                            @elseif ($order->status == 'confirm')
+                                                <a href="{{ route('confirm_to_processing',$order->id) }}" class="btn btn-block btn-success" id="processingOrder">Processing Order</a>
+                                            @elseif ($order->status == 'processing')
+                                                <a href="{{ route('processing_to_deliverd',$order->id) }}" class="btn btn-block btn-success" id="deliverdOrder">Delivered Order</a>
                                             @endif
                                         </td>
                                     </tr>
