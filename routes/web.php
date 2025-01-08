@@ -196,6 +196,12 @@ Route::middleware(['client','status'])->group(function(){
 
     }); // End Product Route
 
+    Route::controller(ManageOrderController::class)->group(function(){
+        Route::get('/all/client/orders', 'AllClientOrders')->name('all.client.orders');
+
+
+    }); // End Order Route
+
 });
 
 Route::middleware(['client'])->group(function(){
