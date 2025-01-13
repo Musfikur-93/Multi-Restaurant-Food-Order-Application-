@@ -37,8 +37,13 @@
           </li>
 
           <li class="nav-item">
+            <a class="nav-link {{ Route::currentRouteName() === 'user.order.list' ? 'active' : '' }}" href="{{ route('user.order.list') }}" role="tab" aria-controls="favourites" aria-selected="true"><i class="icofont-heart"></i> Orders</a>
+         </li>
+
+          <li class="nav-item">
              <a class="nav-link" id="payments-tab" data-toggle="tab" href="#payments" role="tab" aria-controls="payments" aria-selected="false"><i class="icofont-credit-card"></i> Payments</a>
           </li>
+
           <li class="nav-item">
              <a class="nav-link" id="addresses-tab" data-toggle="tab" href="#addresses" role="tab" aria-controls="addresses" aria-selected="false"><i class="icofont-location-pin"></i> Addresses</a>
           </li>

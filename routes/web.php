@@ -43,6 +43,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/all/wishlist', [HomeController::class, 'AllWishlist'])->name('all.wishlist');
     Route::get('/wishlist/remove/{id}', [HomeController::class, 'WishlistRemove'])->name('wishlist.remove');
 
+    Route::controller(ManageOrderController::class)->group(function(){
+        Route::get('/user/order/list', 'UserOrderList')->name('user.order.list');
+        Route::get('/user/order/details/{id}', 'UserOrdersDetails')->name('user.order.details');
+
+    }); // End Order Route
+
 });
 
 require __DIR__.'/auth.php';
@@ -199,7 +205,6 @@ Route::middleware(['client','status'])->group(function(){
     Route::controller(ManageOrderController::class)->group(function(){
         Route::get('/all/client/orders', 'AllClientOrders')->name('all.client.orders');
         Route::get('/client/order/details/{id}', 'ClientOrdersDetails')->name('client.order.details');
-
 
     }); // End Order Route
 

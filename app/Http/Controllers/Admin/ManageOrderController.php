@@ -113,6 +113,27 @@ class ManageOrderController extends Controller
     } // End Method
 
 
+    public function UserOrderList(){
+        $userId = Auth::user()->id;
+        $allUserOrder = Order::where('user_id',$userId)->orderBy('id','DESC')->get();
+        return view('frontend.dashboard.order.order_list',compact('allUserOrder'));
+
+    } // End Method
+
+
+    public function UserOrdersDetails($id){
+
+        $order = Order::with('user')->where('id',$id)->first();
+        $orderItems = OrderItem::with('product')->where('order_id',$id)->orderBy('id','desc')->get();
+
+        $totalPrice = 0;
+        foreach($orderItems as $item){
+            $totalPrice += $item->price * $item->qty;
+        }
+
+        return view('frontend.dashboard.order.user_order_details',compact('order','orderItems','totalPrice'));
+
+    } // End Method
 
 
 

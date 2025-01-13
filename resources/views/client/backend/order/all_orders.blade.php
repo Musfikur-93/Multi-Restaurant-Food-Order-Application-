@@ -22,50 +22,50 @@
                 <div class="card">
 
                     <div class="card-body">
-        <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
-            <thead>
-            <tr>
-                <th>Sl</th>
-                <th>Date</th>
-                <th>Invoice</th>
-                <th>Amount</th>
-                <th>Payment</th>
-                <th>Status</th>
-                <th>Action </th>
-            </tr>
-            </thead>
-            <tbody>
-           @foreach ($orderItemGroupData as $key=> $orderitem)
+                    <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
+                        <thead>
+                        <tr>
+                            <th>Sl</th>
+                            <th>Date</th>
+                            <th>Invoice</th>
+                            <th>Amount</th>
+                            <th>Payment</th>
+                            <th>Status</th>
+                            <th>Action </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                    @foreach ($orderItemGroupData as $key=> $orderitem)
 
-           @php
-               $firstItem = $orderitem->first();
-               $order = $firstItem->order;
-           @endphp
-            <tr>
-                <td>{{ $key+1 }}</td>
-                <td>{{ $order->order_date }}</td>
-                <td>{{ $order->invoice_no }}</td>
-                <td>{{ $order->amount }}</td>
-                <td>{{ $order->payment_method }}</td>
-                <td>
-                    @if ($order->status == 'Pending')
-                        <span class="badge bg-info">Pending</span>
-                    @elseif($order->status == 'confirm')
-                        <span class="badge bg-primary">Confirm</span>
-                    @elseif($order->status == 'processing')
-                        <span class="badge bg-warning">Processing</span>
-                    @elseif($order->status == 'deliverd')
-                        <span class="badge bg-success">Deliverd</span>
-                    @endif
-                </td>
+                    @php
+                        $firstItem = $orderitem->first();
+                        $order = $firstItem->order;
+                    @endphp
+                        <tr>
+                            <td>{{ $key+1 }}</td>
+                            <td>{{ $order->order_date }}</td>
+                            <td>{{ $order->invoice_no }}</td>
+                            <td>{{ $order->amount }}</td>
+                            <td>{{ $order->payment_method }}</td>
+                            <td>
+                                @if ($order->status == 'Pending')
+                                    <span class="badge bg-info">Pending</span>
+                                @elseif($order->status == 'confirm')
+                                    <span class="badge bg-primary">Confirm</span>
+                                @elseif($order->status == 'processing')
+                                    <span class="badge bg-warning">Processing</span>
+                                @elseif($order->status == 'deliverd')
+                                    <span class="badge bg-success">Deliverd</span>
+                                @endif
+                            </td>
 
-                <td><a href="{{ route('client.order.details',$order->id) }}" class="btn btn-info waves-effect waves-light"> <i class="fas fa-eye"></i> </a>
-                </td>
-            </tr>
-            @endforeach
+                            <td><a href="{{ route('client.order.details',$order->id) }}" class="btn btn-info waves-effect waves-light"> <i class="fas fa-eye"></i> </a>
+                            </td>
+                        </tr>
+                        @endforeach
 
-            </tbody>
-        </table>
+                        </tbody>
+                    </table>
                     </div>
                 </div>
             </div> <!-- end col -->
