@@ -115,9 +115,7 @@
                     </div>
                 </div> <!-- end col -->
             </div> <!-- end row -->
-
 <hr>
-
             <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-1">
                 <div class="col">
                     <div class="card">

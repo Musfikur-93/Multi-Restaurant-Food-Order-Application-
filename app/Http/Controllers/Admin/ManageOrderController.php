@@ -11,6 +11,7 @@ use App\Models\Coupon;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ManageOrderController extends Controller
 {
@@ -100,8 +101,9 @@ class ManageOrderController extends Controller
 
     public function ClientOrdersDetails($id){
 
+        $cid = Auth::guard('client')->id();
         $order = Order::with('user')->where('id',$id)->first();
-        $orderItems = OrderItem::with('product')->where('order_id',$id)->orderBy('id','desc')->get();
+        $orderItems = OrderItem::with('product')->where('order_id',$id)->where('client_id',$cid)->orderBy('id','desc')->get();
 
         $totalPrice = 0;
         foreach($orderItems as $item){
@@ -132,6 +134,22 @@ class ManageOrderController extends Controller
         }
 
         return view('frontend.dashboard.order.user_order_details',compact('order','orderItems','totalPrice'));
+
+    } // End Method
+
+
+    public function UserInvoiceDownload($id){
+
+        $order = Order::with('user')->where('id',$id)->first();
+        $orderItems = OrderItem::with('product')->where('order_id',$id)->orderBy('id','desc')->get();
+
+        $totalPrice = 0;
+        foreach($orderItems as $item){
+            $totalPrice += $item->price * $item->qty;
+        }
+
+        $pdf = Pdf::loadView('frontend.dashboard.order.user_order_invoice', compact('order','orderItems','totalPrice'));
+        return $pdf->download('invoice.pdf');
 
     } // End Method
 
