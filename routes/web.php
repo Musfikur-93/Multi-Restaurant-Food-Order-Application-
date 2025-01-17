@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\ManageController;
 use App\Http\Controllers\Admin\ManageOrderController;
+use App\Http\Controllers\Admin\ReportController;
 
 use App\Http\Controllers\Client\RestaurantController;
 use App\Http\Controllers\Client\ProductController;
@@ -136,6 +137,11 @@ Route::controller(ManageOrderController::class)->group(function(){
     Route::get('/confirm_to_processing/{id}', 'ConfirmToProcessing')->name('confirm_to_processing');
     Route::get('/processing_to_deliverd/{id}', 'ProcessingToDeliverd')->name('processing_to_deliverd');
 
+}); // End Order Route
+
+
+Route::controller(ReportController::class)->group(function(){
+    Route::get('/admin/all/report', 'AdminAllReport')->name('admin.all.report');
 
 }); // End Order Route
 
