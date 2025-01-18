@@ -142,6 +142,7 @@ Route::controller(ManageOrderController::class)->group(function(){
 
 Route::controller(ReportController::class)->group(function(){
     Route::get('/admin/all/report', 'AdminAllReport')->name('admin.all.report');
+    Route::post('/admin/search/bydate', 'AdminSearchByDate')->name('admin.search.bydate');
 
 }); // End Order Route
 

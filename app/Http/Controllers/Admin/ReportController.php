@@ -11,12 +11,23 @@ use App\Models\Coupon;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Carbon\Carbon;
+use DateTime;
 
 class ReportController extends Controller
 {
     public function AdminAllReport(){
 
         return view('admin.backend.report.all_report');
+
+    } // End Method
+
+    public function AdminSearchByDate(Request $request){
+
+        $date = new DateTime($request->date);
+        $formatDate = $date->format('d F Y');
+        $orderDate = Order::where('order_date', $formatDate)->latest()->get();
+
+        return view('admin.backend.report.search_by_date', compact('orderDate','formatDate'));
 
     } // End Method
 

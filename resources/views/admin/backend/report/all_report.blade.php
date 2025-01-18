@@ -31,7 +31,7 @@
 
             <div class="col-sm-4">
                 <div class="card">
-                <form id="myForm" action="" method="post" enctype="multipart/form-data">
+                <form id="myForm" action="{{ route('admin.search.bydate') }}" method="post" enctype="multipart/form-data">
                     @csrf
 
                 <div class="row">
@@ -40,7 +40,7 @@
                             <h4>Search By Date</h4>
                             <div class="form-group mb-3">
                                 <label for="example-text-input" class="form-label">Date</label>
-                                <input class="form-control" type="date" name="date"  id="example-text-input">
+                                <input class="form-control" type="date" name="date" id="example-text-input">
                             </div>
 
                             <div class="mt-4">
