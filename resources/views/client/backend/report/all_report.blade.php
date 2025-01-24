@@ -31,7 +31,7 @@
 
             <div class="col-sm-4">
                 <div class="card">
-                <form id="myForm" action="{{ route('admin.search.bydate') }}" method="post" enctype="multipart/form-data">
+                <form id="myForm" action="{{ route('client.search.bydate') }}" method="post" enctype="multipart/form-data">
                     @csrf
 
                 <div class="row">
@@ -56,7 +56,7 @@
 
             <div class="col-sm-4">
                 <div class="card">
-                <form id="myForm" action="{{ route('admin.search.bymonth') }}" method="post" enctype="multipart/form-data">
+                <form id="myForm" action="{{ route('client.search.bymonth') }}" method="post" enctype="multipart/form-data">
                     @csrf
 
                 <div class="row">
@@ -65,6 +65,7 @@
                             <h4>Search By Month</h4>
                             <div class="form-group mb-3">
                                 <label for="example-text-input" class="form-label">Select Month:</label>
+
                                 <select name="month" class="form-select">
                                     <option selected>Select Month</option>
                                     <option value="Janurary">Janurary</option>
@@ -107,7 +108,7 @@
 
             <div class="col-sm-4">
                 <div class="card">
-                <form id="myForm" action="{{ route('admin.search.byyear') }}" method="post" enctype="multipart/form-data">
+                <form id="myForm" action="{{ route('client.search.byyear') }}" method="post" enctype="multipart/form-data">
                     @csrf
 
                 <div class="row">

@@ -220,9 +220,9 @@ Route::middleware(['client','status'])->group(function(){
 
     Route::controller(ReportController::class)->group(function(){
         Route::get('/client/all/report', 'ClientAllReport')->name('client.all.reports');
-        Route::post('/admin/search/bydate', 'AdminSearchByDate')->name('admin.search.bydate');
-        Route::post('/admin/search/bymonth', 'AdminSearchByMonth')->name('admin.search.bymonth');
-        Route::post('/admin/search/byyear', 'AdminSearchByYear')->name('admin.search.byyear');
+        Route::post('/client/search/bydate', 'ClientSearchByDate')->name('client.search.bydate');
+        Route::post('/client/search/bymonth', 'ClientSearchByMonth')->name('client.search.bymonth');
+        Route::post('/client/search/byyear', 'ClientSearchByYear')->name('client.search.byyear');
 
     }); // End Order Route
 
