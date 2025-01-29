@@ -150,6 +150,14 @@ Route::controller(ReportController::class)->group(function(){
 }); // End Order Route
 
 
+Route::controller(ReviewController::class)->group(function(){
+    Route::get('/admin/pending/review', 'AdminPendingReview')->name('admin.pending.review');
+    Route::get('/admin/approve/review', 'AdminApproveReview')->name('admin.approve.review');
+    Route::get('/reviewchangeStatus', 'ReviewChangeStatus');
+
+}); // End Product Route
+
+
 
 }); // End Admin Group Middleware
 
@@ -226,6 +234,11 @@ Route::middleware(['client','status'])->group(function(){
         Route::post('/client/search/byyear', 'ClientSearchByYear')->name('client.search.byyear');
 
     }); // End Order Route
+
+    Route::controller(ReviewController::class)->group(function(){
+        Route::get('/client/all/review', 'ClientAllReview')->name('client.all.reviews');
+
+    }); // End Product Route
 
 });
 
