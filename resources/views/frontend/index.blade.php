@@ -24,14 +24,18 @@
             $menuNamesString = implode(' • ',$menuNames);
 
             $coupons = App\Models\Coupon::where('client_id',$client->id)->where('status','1')->first();
+        @endphp
 
+        @php
+            $reviewCount = App\Models\Review::where('client_id', $client->id)->where('status', 1)->latest()->get();
+            $avarage = App\Models\Review::where('client_id', $client->id)->where('status', 1)->avg('rating');
         @endphp
 
             <div class="col-md-3">
                 <div class="item pb-3">
                    <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm">
                       <div class="list-card-image">
-                         <div class="star position-absolute"><span class="badge badge-success"><i class="icofont-star"></i> 3.1 (300+)</span></div>
+                         <div class="star position-absolute"><span class="badge badge-success"><i class="icofont-star"></i> {{ number_format($avarage,1) }} ({{ count($reviewCount) }}+)</span></div>
                          <div class="favourite-heart text-danger position-absolute"><a aria-label="Add to Wishlist" onclick="addWishList({{ $client->id }})"><i class="icofont-heart"></i></a></div>
 
                          @if ($coupons)
@@ -51,7 +55,7 @@
                             <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="icofont-wall-clock"></i> {{ $client->city->city_name }}</span></p>
 
                          </div>
-                         @if ($coupons)
+                         @if ($coupons == Carbon\Carbon::now()->format('Y-m-d'))
                             <div class="list-card-badge">
                                 <span class="badge badge-success">OFFER</span> <small>{{ $coupons->discount }}% off | Use Coupon {{ $coupons->coupon_name }}</small>
                             </div>

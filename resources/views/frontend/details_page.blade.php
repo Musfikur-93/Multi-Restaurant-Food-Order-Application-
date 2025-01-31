@@ -44,6 +44,7 @@
     </div>
     </div>
  </section>
+
  <section class="offer-dedicated-nav bg-white border-top-0 shadow-sm">
     <div class="container">
        <div class="row">
