@@ -12,8 +12,20 @@ use Carbon\Carbon;
 class FilterController extends Controller
 {
     public function ListRestaurant(){
+
         $products = Product::all();
         return view('frontend.list_restaurant', compact('products'));
+
     } // End of Method
+
+    public function FilterProducts(Request $request){
+
+    } // End of Method
+
+
+
+
+
+
 
 } // End Main Class
