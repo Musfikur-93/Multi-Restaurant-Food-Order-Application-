@@ -187,7 +187,9 @@
                 menus : [],
             };
 
-            $('filter-checkbox:checked').each(function(){
+            //console.log(filters);
+
+            $('.filter-checkbox:checked').each(function(){
                 var type = $(this).data('type');
                 var id = $(this).data('id');
 
@@ -198,7 +200,7 @@
             });
 
             $.ajax({
-                url: '{{ route('filter-products') }}',
+                url: '{{ route('filter.products') }}',
                 type: 'GET',
                 data: filters,
                 success: function(response){
