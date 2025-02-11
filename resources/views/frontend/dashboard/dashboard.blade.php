@@ -7,6 +7,7 @@
       <meta name="description" content="Askbootstrap">
       <meta name="author" content="Askbootstrap">
       <meta name="csrf-token" content="{{ csrf_token() }}" >
+
       <title>Online Food Ordering Website</title>
       <!-- Favicon Icon -->
       <link rel="icon" type="image/png" href="{{ asset('frontend/img/favicon.png') }}">
@@ -20,9 +21,11 @@
       <link href="{{ asset('frontend/vendor/select2/css/select2.min.css') }}" rel="stylesheet">
       <link rel="stylesheet" href="{{ asset('frontend/vendor/owl-carousel/owl.carousel.css') }}">
       <link rel="stylesheet" href="{{ asset('frontend/vendor/owl-carousel/owl.theme.css') }}">
-      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+      <script src="https://js.stripe.com/v3/"></script>
       <!-- Custom styles for this template-->
       <link href="{{ asset('frontend/css/osahan.css') }}" rel="stylesheet">
+
    </head>
    <body>
 
@@ -47,6 +50,7 @@
 
  <!-- toastr JS -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 <script>
     @if(Session::has('message'))
     var type = "{{ Session::get('alert-type','info') }}"

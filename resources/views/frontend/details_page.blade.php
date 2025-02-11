@@ -573,6 +573,7 @@
 
 
  <script type="text/javascript">
+
     $(document).ready(function(){
 
         const Toast = Swal.mixin({
