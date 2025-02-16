@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\ManageController;
 use App\Http\Controllers\Admin\ManageOrderController;
 use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\Admin\RoleController;
 
 use App\Http\Controllers\Client\RestaurantController;
 use App\Http\Controllers\Client\ProductController;
@@ -155,6 +156,14 @@ Route::controller(ReviewController::class)->group(function(){
     Route::get('/admin/pending/review', 'AdminPendingReview')->name('admin.pending.review');
     Route::get('/admin/approve/review', 'AdminApproveReview')->name('admin.approve.review');
     Route::get('/reviewchangeStatus', 'ReviewChangeStatus');
+
+}); // End Product Route
+
+
+Route::controller(RoleController::class)->group(function(){
+    Route::get('/all/permission', 'AllPermission')->name('all.permission');
+    Route::get('/add/permission', 'AddPermission')->name('add.permission');
+    Route::post('/permission/store', 'StorePermission')->name('permission.store');
 
 }); // End Product Route
 
