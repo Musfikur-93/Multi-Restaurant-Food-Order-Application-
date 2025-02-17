@@ -164,6 +164,12 @@ Route::controller(RoleController::class)->group(function(){
     Route::get('/all/permission', 'AllPermission')->name('all.permission');
     Route::get('/add/permission', 'AddPermission')->name('add.permission');
     Route::post('/permission/store', 'StorePermission')->name('permission.store');
+    Route::get('/edit/permission/{id}', 'EditPermission')->name('edit.permission');
+    Route::post('/permission/update', 'UpdatePermission')->name('permission.update');
+    Route::get('/delete/permission/{id}', 'DeletePermission')->name('delete.permission');
+
+    // Excel Permission Import and Export
+    Route::get('/import/permission', 'ImportPermission')->name('import.permission');
 
 }); // End Product Route
 

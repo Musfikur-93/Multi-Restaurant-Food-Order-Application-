@@ -12,7 +12,11 @@
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <a href="{{ route('add.permission') }}" class="btn btn-primary waves-effect waves-light">Add Permission</a>
+                            <a href="{{ route('add.permission') }}" class="btn btn-primary waves-effect waves-light">Add Permission</a> &nbsp; &nbsp;
+
+                            <a href="{{ route('import.permission') }}" class="btn btn-warning waves-effect waves-light">Import</a> &nbsp; &nbsp;
+
+                            <a href="{{ route('add.permission') }}" class="btn btn-danger waves-effect waves-light">Export</a>
                         </ol>
                     </div>
 
@@ -45,8 +49,8 @@
                                 <td>{{ $item->guard_name }}</td>
 
                                 <td>
-                                    <a href="{{ route('edit.category',$item->id) }}" class="btn btn-info waves-effect waves-light">Edit</a>
-                                    <a href="{{ route('delete.category',$item->id) }}" class="btn btn-danger waves-effect waves-light" id="delete">Delete</a>
+                                    <a href="{{ route('edit.permission',$item->id) }}" class="btn btn-info waves-effect waves-light">Edit</a>
+                                    <a href="{{ route('delete.permission',$item->id) }}" class="btn btn-danger waves-effect waves-light" id="delete">Delete</a>
                                 </td>
                             </tr>
                             @endforeach
