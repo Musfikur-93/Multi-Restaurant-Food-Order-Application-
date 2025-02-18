@@ -9,11 +9,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0 font-size-18">Import Permission</h4>
+                    <h4 class="mb-sm-0 font-size-18">Add Roles</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item "><a href="{{ route('export') }}" class="btn btn-warning waves-effect waves-light">Export</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Add Roles</li>
                         </ol>
                     </div>
 
@@ -27,19 +28,19 @@
  <div class="card">
 <div class="card-body p-4">
 
-<form id="myForm" action="{{ route('import') }}" method="post" enctype="multipart/form-data">
+<form id="myForm" action="{{ route('roles.store') }}" method="post" enctype="multipart/form-data">
     @csrf
 
 <div class="row">
     <div class="col-lg-6">
         <div>
             <div class="form-group mb-3">
-                <label for="example-text-input" class="form-label">Xlsx File Import</label>
-                <input class="form-control" type="file" name="import_file" id="example-text-input">
+                <label for="example-text-input" class="form-label">Role Name</label>
+                <input class="form-control" type="text" name="name"  id="example-text-input">
             </div>
 
             <div class="mt-4">
-                <button type="submit" class="btn btn-primary waves-effect waves-light">Upload</button>
+                <button type="submit" class="btn btn-primary waves-effect waves-light">Save Changes</button>
             </div>
 
         </div>

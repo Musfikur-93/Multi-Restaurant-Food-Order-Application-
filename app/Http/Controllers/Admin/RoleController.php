@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use App\Exports\PermissionExport;
+use App\Imports\PermissionImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class RoleController extends Controller
 {
@@ -86,6 +89,100 @@ class RoleController extends Controller
         return view('admin.backend.pages.permission.import_permission');
 
     } // End of ImportPermission
+
+
+    public function Export(){
+
+        return Excel::download(new PermissionExport, 'permission.xlsx');
+
+    } // End of Export
+
+
+    public function Import(Request $request){
+
+        Excel::import(new PermissionImport, $request->file('import_file'));
+
+        $notification = array(
+            'message' => 'Permission Imported Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+
+    } // End of Import
+
+
+    /////////////////////////////// Role Section ///////////////////////////////
+
+    public function AllRoles(){
+
+        $roles = Role::all();
+        return view('admin.backend.pages.role.all_roles', compact('roles'));
+
+    } // End of AllRoles
+
+
+    public function AddRoles(){
+
+        return view('admin.backend.pages.role.add_roles');
+
+    } // End of AddPermission
+
+
+    public function StoreRoles(Request $request){
+
+        Role::create([
+            'name' => $request->name,
+            'guard_name' => 'admin',
+        ]);
+
+        $notification = array(
+            'message' => 'Roles Created Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.roles')->with($notification);
+
+    } // End of StorePermission
+
+
+    public function EditRoles($id){
+
+        $roles = Role::find($id);
+        return view('admin.backend.pages.role.edit_role',compact('roles'));
+
+    } // End of EditPermission
+
+
+    public function UpdateRoles(Request $request){
+
+        $role_id = $request->id;
+
+        Role::find($role_id)->update([
+            'name' => $request->name,
+        ]);
+
+        $notification = array(
+            'message' => 'Role Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.roles')->with($notification);
+
+    } // End of UpdateRoles
+
+
+    public function DeleteRoles($id){
+
+        Role::find($id)->delete();
+
+        $notification = array(
+            'message' => 'Role Deleted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+
+    } // End of DeletePermission
 
 
 

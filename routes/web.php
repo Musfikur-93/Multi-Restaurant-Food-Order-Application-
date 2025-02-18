@@ -170,6 +170,19 @@ Route::controller(RoleController::class)->group(function(){
 
     // Excel Permission Import and Export
     Route::get('/import/permission', 'ImportPermission')->name('import.permission');
+    Route::get('/export', 'Export')->name('export');
+    Route::post('/import', 'Import')->name('import');
+
+}); // End Product Route
+
+
+Route::controller(RoleController::class)->group(function(){
+    Route::get('/all/roles', 'AllRoles')->name('all.roles');
+    Route::get('/add/roles', 'AddRoles')->name('add.roles');
+    Route::post('/roles/store', 'StoreRoles')->name('roles.store');
+    Route::get('/edit/roles/{id}', 'EditRoles')->name('edit.roles');
+    Route::post('/roles/update', 'UpdateRoles')->name('roles.update');
+    Route::get('/delete/roles/{id}', 'DeleteRoles')->name('delete.roles');
 
 }); // End Product Route
 

@@ -180,8 +180,8 @@
                                 <span data-key="t-calendar">All Permission</span>
                             </a>
 
-                            <a href="{{ route('admin.approve.review') }}">
-                                <span data-key="t-calendar">Approve Review</span>
+                            <a href="{{ route('all.roles') }}">
+                                <span data-key="t-calendar">All Roles</span>
                             </a>
                         </li>
                     </ul>
