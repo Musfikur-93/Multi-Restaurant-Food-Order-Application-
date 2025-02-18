@@ -170,6 +170,8 @@ Route::controller(RoleController::class)->group(function(){
 
     // Excel Permission Import and Export
     Route::get('/import/permission', 'ImportPermission')->name('import.permission');
+    Route::get('/export', 'Export')->name('export');
+    Route::post('/import', 'Import')->name('import');
 
 }); // End Product Route
 
