@@ -111,6 +111,7 @@ class RoleController extends Controller
     } // End of Import
 
 
+<<<<<<< HEAD
     /////////////////////////////// Role Section ///////////////////////////////
 
     public function AllRoles(){
@@ -185,6 +186,8 @@ class RoleController extends Controller
     } // End of DeletePermission
 
 
+=======
+>>>>>>> 1ef423f4f58c30a36781d78b1f6d70ddeae977a8
 
 
 } // End of RoleController

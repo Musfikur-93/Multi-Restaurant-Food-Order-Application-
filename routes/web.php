@@ -172,6 +172,7 @@ Route::controller(RoleController::class)->group(function(){
     Route::get('/import/permission', 'ImportPermission')->name('import.permission');
     Route::get('/export', 'Export')->name('export');
     Route::post('/import', 'Import')->name('import');
+<<<<<<< HEAD
 
 }); // End Product Route
 
@@ -183,6 +184,8 @@ Route::controller(RoleController::class)->group(function(){
     Route::get('/edit/roles/{id}', 'EditRoles')->name('edit.roles');
     Route::post('/roles/update', 'UpdateRoles')->name('roles.update');
     Route::get('/delete/roles/{id}', 'DeleteRoles')->name('delete.roles');
+=======
+>>>>>>> 1ef423f4f58c30a36781d78b1f6d70ddeae977a8
 
 }); // End Product Route
 
