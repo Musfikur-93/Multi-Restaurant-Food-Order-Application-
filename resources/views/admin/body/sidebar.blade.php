@@ -183,6 +183,10 @@
                             <a href="{{ route('all.roles') }}">
                                 <span data-key="t-calendar">All Roles</span>
                             </a>
+
+                            <a href="{{ route('add.roles.permission') }}">
+                                <span data-key="t-calendar">Roles in Permission</span>
+                            </a>
                         </li>
                     </ul>
                 </li>

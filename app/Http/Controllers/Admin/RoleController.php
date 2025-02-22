@@ -9,6 +9,8 @@ use Spatie\Permission\Models\Permission;
 use App\Exports\PermissionExport;
 use App\Imports\PermissionImport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\Admin;
+use Illuminate\Support\Facades\DB;
 
 class RoleController extends Controller
 {
@@ -111,7 +113,6 @@ class RoleController extends Controller
     } // End of Import
 
 
-<<<<<<< HEAD
     /////////////////////////////// Role Section ///////////////////////////////
 
     public function AllRoles(){
@@ -186,8 +187,42 @@ class RoleController extends Controller
     } // End of DeletePermission
 
 
-=======
->>>>>>> 1ef423f4f58c30a36781d78b1f6d70ddeae977a8
+    ////////////////////////////// Add Role Permission All Method //////////////////////////////
+
+    public function AddRolesPermission(){
+        $roles = Role::all();
+        $permissions = Permission::all();
+        $permissionGroup = Admin::getpermissionGroup();
+
+        return view('admin.backend.pages.rolesetup.add_roles_permission', compact('roles', 'permissions', 'permissionGroup'));
+
+    } // End of AddRolesPermission
+
+
+    public function RolesPermissionStore(Request $request){
+
+        $data = array();
+        $permissions = $request->permission;
+
+        foreach($permissions as $key => $item){
+            $data['role_id'] = $request->role_id;
+            $data['permission_id'] = $item;
+
+            DB::table('role_has_permissions')->insert($data);
+
+        } // End of foreach
+
+        $notification = array(
+            'message' => 'Role Permission Added Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.roles')->with($notification);
+
+    } // End of RolesPermissionStore
+
+
+
 
 
 } // End of RoleController
