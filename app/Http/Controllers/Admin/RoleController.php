@@ -240,6 +240,43 @@ class RoleController extends Controller
     } // End of AddRolesPermission
 
 
+    public function AdminRolesUpdate(Request $request, $id){
+
+        $role = Role::find($id);
+        $permissions = $request->permission;
+
+        if (!empty($permissions)) {
+            $permissionNames = Permission::whereIn('id', $permissions)->pluck('name')->toArray();
+            $role->syncPermissions($permissionNames);
+        }else{
+            $role->syncPermissions([]);
+        }
+
+        $notification = array(
+            'message' => 'Role Permission Updated Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('all.roles.permission')->with($notification);
+
+    } // End of AdminRolesUpdate
+
+
+    public function AdminDeleteRoles($id){
+
+        $role = Role::find($id);
+        if (!is_null($role)) {
+            $role->delete();
+        }
+
+        $notification = array(
+            'message' => 'Role Permission Deleted Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+
+    } // End of AdminDeleteRoles
+
+
 
 
 
