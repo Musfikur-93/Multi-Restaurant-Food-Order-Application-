@@ -149,7 +149,7 @@ Route::controller(ReportController::class)->group(function(){
     Route::post('/admin/search/bymonth', 'AdminSearchByMonth')->name('admin.search.bymonth');
     Route::post('/admin/search/byyear', 'AdminSearchByYear')->name('admin.search.byyear');
 
-}); // End Order Route
+}); // End Report Route
 
 
 Route::controller(ReviewController::class)->group(function(){
@@ -157,7 +157,7 @@ Route::controller(ReviewController::class)->group(function(){
     Route::get('/admin/approve/review', 'AdminApproveReview')->name('admin.approve.review');
     Route::get('/reviewchangeStatus', 'ReviewChangeStatus');
 
-}); // End Product Route
+}); // End admin Review Route
 
 
 Route::controller(RoleController::class)->group(function(){
@@ -173,7 +173,7 @@ Route::controller(RoleController::class)->group(function(){
     Route::get('/export', 'Export')->name('export');
     Route::post('/import', 'Import')->name('import');
 
-}); // End Product Route
+}); // End Permission Route
 
 
 Route::controller(RoleController::class)->group(function(){
@@ -184,7 +184,7 @@ Route::controller(RoleController::class)->group(function(){
     Route::post('/roles/update', 'UpdateRoles')->name('roles.update');
     Route::get('/delete/roles/{id}', 'DeleteRoles')->name('delete.roles');
 
-}); // End Product Route
+}); // End Role Route
 
 
 Route::controller(RoleController::class)->group(function(){
@@ -196,7 +196,16 @@ Route::controller(RoleController::class)->group(function(){
     Route::post('/admin/roles/update/{id}', 'AdminRolesUpdate')->name('admin.roles.update');
     Route::get('/admin/delete/roles/{id}', 'AdminDeleteRoles')->name('admin.delete.roles');
 
-}); // End Product Route
+}); // End Role Permission Route
+
+
+Route::controller(RoleController::class)->group(function(){
+    Route::get('/all/admin', 'AllAdmin')->name('all.admin');
+    Route::get('/add/admin', 'AddAdmin')->name('add.admin');
+    Route::post('/admin/store', 'AdminStore')->name('admin.store');
+
+
+}); // End All Admin Route
 
 
 
