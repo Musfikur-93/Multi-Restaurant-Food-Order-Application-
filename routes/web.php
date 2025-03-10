@@ -203,6 +203,9 @@ Route::controller(RoleController::class)->group(function(){
     Route::get('/all/admin', 'AllAdmin')->name('all.admin');
     Route::get('/add/admin', 'AddAdmin')->name('add.admin');
     Route::post('/admin/store', 'AdminStore')->name('admin.store');
+    Route::get('/edit/admin/{id}', 'EditAdmin')->name('edit.admin');
+    Route::post('/admin/update/{id}', 'AdminUpdate')->name('admin.update');
+    Route::get('/delete/admin/{id}', 'DeleteAdmin')->name('delete.admin');
 
 
 }); // End All Admin Route

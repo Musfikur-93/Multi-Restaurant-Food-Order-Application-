@@ -9,12 +9,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0 font-size-18">Add Admin</h4>
+                    <h4 class="mb-sm-0 font-size-18">Edit Admin</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Add Admin </li>
+                            <li class="breadcrumb-item active">Edit Admin </li>
                         </ol>
                     </div>
 
@@ -28,7 +28,7 @@
                 <div class="card">
                     <div class="card-body p-4">
 
-                        <form id="myForm" action="{{ route('admin.store') }}" method="post" enctype="multipart/form-data">
+                        <form id="myForm" action="{{ route('admin.update', $admin->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
 
                             <div class="row">
@@ -36,35 +36,28 @@
                             <div class="col-xl-6 col-md-6">
                                 <div class="form-group mb-3">
                                     <label for="example-text-input" class="form-label">Name</label>
-                                    <input class="form-control" type="text" name="name" id="example-text-input" required>
+                                    <input class="form-control" type="text" name="name" id="example-text-input" value="{{ $admin->name }}">
                                 </div>
                             </div>
 
                             <div class="col-xl-6 col-md-6">
                                 <div class="form-group mb-3">
                                     <label for="example-text-input" class="form-label">Email</label>
-                                    <input class="form-control" type="email" name="email" id="example-text-input" required>
+                                    <input class="form-control" type="email" name="email" id="example-text-input" value="{{ $admin->email }}">
                                 </div>
                             </div>
 
                             <div class="col-xl-6 col-md-6">
                                 <div class="form-group mb-3">
                                     <label for="example-text-input" class="form-label">Phone</label>
-                                    <input class="form-control" type="text" name="phone" id="example-text-input">
+                                    <input class="form-control" type="text" name="phone" id="example-text-input" value="{{ $admin->phone }}">
                                 </div>
                             </div>
 
                             <div class="col-xl-6 col-md-6">
                                 <div class="form-group mb-3">
                                     <label for="example-text-input" class="form-label">Address</label>
-                                    <input class="form-control" type="text" name="address" id="example-text-input">
-                                </div>
-                            </div>
-
-                            <div class="col-xl-6 col-md-6">
-                                <div class="form-group mb-3">
-                                    <label for="example-text-input" class="form-label">Password</label>
-                                    <input class="form-control" type="password" name="password" id="example-text-input" required>
+                                    <input class="form-control" type="text" name="address" id="example-text-input" value="{{ $admin->address }}">
                                 </div>
                             </div>
 
@@ -74,7 +67,7 @@
                                     <select name="roles" class="form-select" required>
                                         <option selected disabled>Select</option>
                                         @foreach ($roles as $role)
-                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                        <option value="{{ $role->id }}" {{ $admin->hasRole($role->name) ? 'selected' : '' }}>{{ $role->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>

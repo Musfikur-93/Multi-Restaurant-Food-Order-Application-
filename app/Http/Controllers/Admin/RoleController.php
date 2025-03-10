@@ -324,6 +324,62 @@ class RoleController extends Controller
     } // End of AdminStore
 
 
+    public function EditAdmin($id){
+        $admin = Admin::find($id);
+        $roles = Role::all();
+        return view('admin.backend.pages.admin.edit_admin', compact('admin', 'roles'));
+
+    } // End of EditAdmin
+
+
+    public function AdminUpdate(Request $request, $id){
+
+        $user = Admin::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->role = 'admin';
+        $user->status = '1';
+        $user->save();
+
+        $user->roles()->detach();
+
+        if ($request->roles) {
+            $role = Role::where('id',$request->roles)->where('guard_name','admin')->first();
+
+            if ($role) {
+                $user->assignRole($role->name);
+            }
+        }
+
+        $notification = array(
+            'message' => 'Admin Updated Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('all.admin')->with($notification);
+
+    } // End of AdminUpdate
+
+
+    public function DeleteAdmin($id){
+
+        $admin = Admin::find($id);
+        if (!is_null($admin)) {
+            $admin->delete();
+        }
+
+        $notification = array(
+            'message' => 'Admin Deleted Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+
+    } // End of DeleteAdmin
+
+
+
+
 
 
 
