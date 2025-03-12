@@ -82,7 +82,7 @@ Route::controller(CityController::class)->group(function(){
 
 
 Route::controller(CategoryController::class)->group(function(){
-    Route::get('/all/category', 'AllCategory')->name('all.category');
+    Route::get('/all/category', 'AllCategory')->name('all.category')->middleware(['permission:category.all']);
     Route::get('/add/category', 'AddCategory')->name('add.category');
     Route::post('/store/category', 'StoreCategory')->name('store.category');
     Route::get('/edit/category/{id}', 'EditCategory')->name('edit.category');
