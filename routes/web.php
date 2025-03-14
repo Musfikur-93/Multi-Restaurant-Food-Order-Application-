@@ -339,6 +339,8 @@ Route::controller(CartController::class)->group(function(){
 Route::controller(OrderController::class)->group(function(){
     Route::post('/cash_order', 'CashOrder')->name('cash_order');
     Route::post('/stripe_order', 'StripeOrder')->name('stripe_order');
+    // Mark Notification as Read
+    Route::post('/mark-notification-as-read/{notification}', 'MarkAsRead');
 }); // End of cash order
 
 
